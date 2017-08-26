@@ -17,7 +17,6 @@ export default class GameBox extends React.Component {
     const url = "http://localhost:3000/api/cards";
     const request = new XMLHttpRequest();
     request.open("GET", url);
-debugger
     request.addEventListener('load', () => {
       if(request.status === 200){
         const jsonString = request.responseText;
@@ -26,6 +25,8 @@ debugger
           allCards: data,
           focusCard: data[0]
         });
+        console.log({this.props.allCards});ß
+
       }
     });
     request.send()
