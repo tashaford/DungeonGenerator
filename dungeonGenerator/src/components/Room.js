@@ -10,6 +10,7 @@ class Room extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Text>Dungeon Room</Text>
         <Text> {this.props.card.name} </Text>
       </View>
       )
@@ -23,10 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignContent: 'space-around'
   },
-  image: {
-    width: 50,
-    height: 50
-  }
 
 })
 
