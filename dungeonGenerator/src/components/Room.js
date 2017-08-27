@@ -11,7 +11,7 @@ class Room extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Dungeon Room</Text>
-        <Text> {this.props.card.name} </Text>
+        <Text> {this.props.card} </Text>
       </View>
       )
   }
