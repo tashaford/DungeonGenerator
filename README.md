@@ -3,7 +3,8 @@
 ## Given by CodeClan
 Do whatever you want
 Consolidate and expand your learning by taking on a project of your choosing.
-If you are stuck for inspiration, here are some ideas: ###
+If you are stuck for inspiration, here are some ideas:
+###
 	•	Mobile dev (deeper into Android, Xamarin, React Native, Swift...)
 	•	JavaScript frameworks (deeper into React, Angular, Vue, Marko, TypeScript...)
 	•	Other languages (Go, Scala, C#, Python...)
