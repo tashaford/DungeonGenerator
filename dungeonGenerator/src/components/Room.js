@@ -8,10 +8,13 @@ class Room extends React.Component {
       return null;
     }
 
+    console.log(this.props.card.image);
+
     return (
       <View style={styles.container}>
-        <Text>Dungeon Room</Text>
-        
+        <Text style={styles.text}>Dungeon Room</Text>
+        <Text style={styles.text}>Card is {this.props.card.name} </Text>
+        <Image source={{uri: this.props.card.image}} style={{height: 370, width: 320}} resizeMode="contain"/>
       </View>
     )
   }
@@ -21,12 +24,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
-    alignContent: 'space-around'
+    alignContent: 'space-around',
   },
   text: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 15,
   }
 })
 

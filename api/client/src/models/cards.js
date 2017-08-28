@@ -2,70 +2,70 @@ var Card = require('./card');
 
 var Cards = function() {
 
-  var card_a1 = new Card({
-    name: "A1",
-    image: "./images/a1"
+  var card_a4 = new Card({
+    name: "A4",
+    image: "http://192.168.111.159:3000/images/a4.png"
   });
 
-  var card_a2 = new Card({
-    name: "A2",
-    image: "./images/a2"
+  var card_a5 = new Card({
+    name: "A5",
+    image: "http://192.168.111.159:3000/images/a5.png"
   });
 
-  var card_a3 = new Card({
-    name: "A3",
-    image: "./images/a3"
+  var card_a6 = new Card({
+    name: "A6",
+    image: "http://192.168.111.159:3000/images/a6.png"
   });
 
-  var card_b1 = new Card({
-    name: "B1",
-    image: "./images/b1"
+  var card_b4 = new Card({
+    name: "B4",
+    image: "http://192.168.111.159:3000/images/b4.png"
   });
 
-  var card_b2 = new Card({
-    name: "B2",
-    image: "./images/b2"
+  var card_b5 = new Card({
+    name: "B5",
+    image: "http://192.168.111.159:3000/images/b5.png"
   });
 
-  var card_b3 = new Card({
-    name: "B3",
-    image: "./images/b3"
-  });
-
-  var card_e1 = new Card({
-    name: "A1",
-    image: "./images/a1"
+  var card_b6 = new Card({
+    name: "B6",
+    image: "http://192.168.111.159:3000/images/b6.png"
   });
 
   var card_e2 = new Card({
     name: "E2",
-    image: "./images/e2"
+    image: "http://192.168.111.159:3000/images/e2.png"
   });
 
   var card_e3 = new Card({
     name: "E3",
-    image: "./images/e3"
+    image: "http://192.168.111.159:3000/images/e3.png"
   });
 
-  var card_f1 = new Card({
-    name: "F1",
-    image: "./images/f1"
+  var card_e4 = new Card({
+    name: "E4",
+    image: "http://192.168.111.159:3000/images/e4.png"
   });
 
-  var card_f2 = new Card({
-    name: "F2",
-    image: "./images/f2"
+  var card_f4 = new Card({
+    name: "F4",
+    image: "http://192.168.111.159:3000/images/f4.png"
   });
 
-  var card_f3 = new Card({
-    name: "F3",
-    image: "./images/f3"
+  var card_f5 = new Card({
+    name: "F5",
+    image: "http://192.168.111.159:3000/images/f5.png"
   });
 
-  return [[card_a1, card_a2, card_a3],
-          [card_b1, card_b2, card_b3],
-          [card_e1, card_e2, card_e3],
-          [card_f1, card_f2, card_f3]];
+  var card_f6 = new Card({
+    name: "F6",
+    image: "http://192.168.111.159:3000/images/f6.png"
+  });
+
+  return [[card_a4, card_a5, card_a6],
+          [card_b4, card_b5, card_b6],
+          [card_e2, card_e3, card_e4],
+          [card_f4, card_f5, card_f6]];
 }
 
 module.exports = Cards;
