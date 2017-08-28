@@ -62,10 +62,10 @@ var Cards = function() {
     image: "./images/f3"
   });
 
-  return [card_a1, card_a2, card_a3,
-          card_b1, card_b2, card_b3,
-          card_e1, card_e2, card_e3,
-          card_f1, card_f2, card_f3];
+  return [[card_a1, card_a2, card_a3],
+          [card_b1, card_b2, card_b3],
+          [card_e1, card_e2, card_e3],
+          [card_f1, card_f2, card_f3]];
 }
 
 module.exports = Cards;

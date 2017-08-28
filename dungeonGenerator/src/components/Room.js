@@ -11,9 +11,9 @@ class Room extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Dungeon Room</Text>
-        <Text> {this.props.card} </Text>
+        
       </View>
-      )
+    )
   }
 }
 
@@ -24,7 +24,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignContent: 'space-around'
   },
-
+  text: {
+    fontSize: 20,
+    color: 'white',
+  }
 })
 
 export default Room

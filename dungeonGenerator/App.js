@@ -6,8 +6,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Dungeon Generator</Text>
-        <RoomContainer />
+          <Text style={styles.text}>Dungeon Generator</Text>
+          <RoomContainer />
       </View>
     );
   }
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 60,
     fontSize: 30,
-    fontFamily: 'Cochin',
     color: 'white',
   }
 });
