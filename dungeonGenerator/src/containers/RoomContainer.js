@@ -1,6 +1,7 @@
 import React from 'react';
-import { AppRegistry, View, Text, StyleSheet, Button } from 'react-native';
+import { AppRegistry, View, StyleSheet, Button, Text, Image } from 'react-native';
 import Room from '../components/Room';
+import RoomList from '../components/RoomList';
 
 export default class GameBox extends React.Component {
 
@@ -9,12 +10,15 @@ export default class GameBox extends React.Component {
     this.state = {
       allCards: [],
       newDeck: [],
-      focusCard: null
+      firstRoom: null,
+      focusRooms: [],
+      entrance: null,
+      allEntrances: []
     };
   }
 
   componentDidMount(){
-    const url = "http://192.168.111.159:3000/api/cards";
+    const url = "http://192.168.1.102:3000/api/cards";
     const request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.onreadystatechange = () => {
@@ -22,49 +26,60 @@ export default class GameBox extends React.Component {
         if (request.status === 200) {
           const jsonString = request.responseText;
           const data = JSON.parse(jsonString);
-        this.setState({
-          allCards: data,
-          focusCard: data[0][1]
-        }, function(){
-          console.log(this.state.allCards);
-          console.log(this.state.newDeck);
-        }) 
-      } else {
-        console.log('onreadystatechange: error');
-        console.log(request.responseText)
+          this.setState({
+            allCards: data
+          }, function(){
+            this.createDeck(this.state.allCards, () => {
+            });
+          }) 
+        } else {
+          console.log('onreadystatechange: error');
+          console.log(request.responseText)
+        }
       }
-    }
-  };
-  request.send();
-}
-
-newRoom(){
-  this.createDeck(this.state.allCards);
-  this.setFocusCard(this.state.newDeck);
-}
-
-setFocusCard(cards){
-  let card = this.shuffleCards(cards)[0];
-  this.setState({
-    focusCard: card
-  });
-}
-
-createDeck(decks){
-  let newDeck = [];
-  for (deck of decks) {
-    let shuffle = this.shuffleCards(deck);
-    newDeck.push(shuffle[0]);
+    };
+    request.send();
   }
-  this.setState({
-    newDeck: newDeck
-  });
-}
 
-shuffleCards(cards){
-    // Fisher–Yates shuffle
-    let counter = cards.length;
-    while (cards.length > 0) {
+  setFocusRooms(cards, callback){
+    var card = cards[0]
+    var newRooms = this.state.focusRooms
+    newRooms.push(card)
+    cards.splice(0,1);
+    this.setState({
+      focusRooms: newRooms
+    }, callback);
+  }
+
+  randomDoorEntrance(choices, callback) {
+    this.shuffleCards(choices);
+    var chosen = this.state.allEntrances;
+    chosen.push(choices[0])
+    this.setState({
+      allEntrances: chosen
+    }, callback);
+  }
+
+  createDeck(decks, callback){
+    var newDeck = [];
+    for (var deck of decks) {
+      let shuffle = this.shuffleCards(deck);
+      newDeck.push(shuffle[0]);
+    }
+    this.shuffleCards(newDeck);
+    entrance = this.shuffleCards(newDeck[0].greenArrows);
+    this.setState({
+      newDeck: newDeck,
+      firstRoom: newDeck[0],
+      entrance: entrance[0]
+    }, callback);
+    newDeck.splice(0, 1);
+  }
+
+  shuffleCards(cards){
+    // Fisher–Yates shuffle    
+    var counter = cards.length;
+    while (counter > 0) {
       let index = Math.floor(Math.random() * counter);
       counter--;
       let temp = cards[counter];
@@ -75,24 +90,58 @@ shuffleCards(cards){
   }
 
   clickHandler() {
-
+    this.setFocusRooms(this.state.newDeck, () => {});
+    var rooms = this.state.focusRooms;
+    this.randomDoorEntrance(rooms[rooms.length - 1].greenArrows, () => {});
   }
 
   render() {
-    this.createDeck(this.state.allCards)
     return (
-      <View>
-      <Button style={styles.button} title="Add a room to Dungeon" onPress={this.clickHandler.bind(this)}/>
-      <View>
-      <Room card={this.state.focusCard} />
-      </View>
+      <View style={styles.container}>
+        <View>
+        <Text style={styles.topText}>Key for cards</Text>
+          
+          <Text style={styles.text}>{<Image source={require('../../assets/images/barrel.png')} style={{width: 50, height: 50, margin: 5}}></Image>}  barrel</Text>
+          <Text style={styles.text}>{<Image source={require('../../assets/images/enemy.png')} style={{width: 50, height: 50, margin: 5}}></Image>}  enemy placements</Text>
+          <Text style={styles.text}>{<Image source={require('../../assets/images/treasure.png')} style={{width: 50, height: 50, margin: 5}}></Image>}  treasure chests</Text>
+          <Text style={styles.text}>{<Image source={require('../../assets/images/table.png')} style={{width: 100, height: 45, margin: 5}}></Image>}  tables</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button color='#800000' title="Add a room to your dungeon" onPress={this.clickHandler.bind(this)} />
+        </View>
+          <View>
+            <Room card={this.state.firstRoom} entrance={this.state.entrance} number="1" />
+            <RoomList rooms={this.state.focusRooms} allEntrances={this.state.allEntrances} />
+          </View>
       </View>
       )
   }
 }
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'white'
+  container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  topText: {
+    fontSize: 25,
+    color: '#800000',
+    textAlign: 'left',
+    marginHorizontal: 40,
+    textDecorationLine: 'underline',
+  },
+  text: {
+    fontSize: 20,
+    color: '#800000',
+    textAlign: 'left',
+    marginHorizontal: 40,
+    fontStyle: 'italic',
+  },
+  buttonContainer: {
+    borderWidth: 3,
+    borderColor: '#800000',
+    borderRadius: 4,
+    marginBottom: 15,
+    marginTop: 15,
   }
 })
