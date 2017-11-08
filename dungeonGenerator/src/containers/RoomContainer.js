@@ -18,7 +18,7 @@ export default class GameBox extends React.Component {
   }
 
   componentDidMount(){
-    const url = "http://192.168.1.106:3000/api/cards";
+    const url = "http://192.168.1.106:3000/";
     const request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.onreadystatechange = () => {
@@ -33,8 +33,8 @@ export default class GameBox extends React.Component {
             });
           }) 
         } else {
-          console.log('onreadystatechange: error');
-          console.log(request.responseText)
+          // console.log('onreadystatechange: error');
+          // console.log(request.responseText)
         }
       }
     };
@@ -77,7 +77,6 @@ export default class GameBox extends React.Component {
   }
 
   shuffleCards(cards){
-    // Fisher–Yates shuffle    
     var counter = cards.length;
     while (counter > 0) {
       let index = Math.floor(Math.random() * counter);
@@ -91,6 +90,7 @@ export default class GameBox extends React.Component {
 
   clickHandler() {
     this.setFocusRooms(this.state.newDeck, () => {});
+    console.log(this.state.focusRooms)
     var rooms = this.state.focusRooms;
     this.randomDoorEntrance(rooms[rooms.length - 1].greenArrows, () => {});
   }

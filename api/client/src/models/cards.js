@@ -10,7 +10,7 @@ var Cards = function() {
 
   var card_a2 = new Card({
     name: "A2",
-    image: "http://192.168.1.106.223:3000/images/a2.png",
+    image: "http://192.168.1.106:3000/images/a2.png",
     greenArrows: ['Right', 'Top', 'Left']
   });
 
