@@ -20,10 +20,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-          { this.state.fontLoaded ? <Text style={styles.text}>Dungeon Generator</Text> : null }
-          <RoomContainer />
-        </ScrollView>
+        <Text>{ this.state.fontLoaded ? <Text style={styles.text}>Dungeon Generator</Text> : null }</Text>
+        <ScrollView><RoomContainer /></ScrollView>
       </View>
       );
   }
@@ -34,12 +32,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#e8d8c3',
+    marginTop: 20,
   },
   text: {
     marginTop: 30,
-    marginBottom: 10,
-    fontSize: 38,
-    fontWeight: 'bold',
+    marginBottom: 15,
+    fontSize: 35,
     color: '#800000',
     fontFamily: 'acme',
     textAlign: 'center',

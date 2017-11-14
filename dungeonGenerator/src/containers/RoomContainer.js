@@ -18,7 +18,7 @@ export default class GameBox extends React.Component {
   }
 
   componentDidMount(){
-    const url = "http://192.168.1.106:3000/";
+    const url = "http://192.168.1.103:3000/";
     const request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.onreadystatechange = () => {
